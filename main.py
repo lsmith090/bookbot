@@ -1,4 +1,5 @@
-from stats import get_word_count, get_character_count, generate_report
+from stats import generate_report
+import sys
 
 def get_book_text(path):
     with open(path) as book:
@@ -6,7 +7,10 @@ def get_book_text(path):
     return book_contents
 
 def main():
-    book_path = "books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    book_path = sys.argv[1]
     book_text = get_book_text(book_path)
     generate_report(book_text, book_path)
 
